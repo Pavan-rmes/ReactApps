@@ -1,4 +1,4 @@
-export function ChevronLeft() {
+export function ChevronLeft({className}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ export function ChevronLeft() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="white"
-      className="w-12 h-12"
+      className={className}
     >
       <path
         strokeLinecap="round"

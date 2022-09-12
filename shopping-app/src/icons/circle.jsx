@@ -1,13 +1,13 @@
-export function CircleIcon({styling}) {
-    console.log(styling)
+export function CircleIcon({styling,radius}) {
   return (
-    <svg height="15" width="15">
+    <svg height="18" width="18">
       <circle
-        cx="8"
-        cy="8"
-        r="4"
+        className={`${styling} hover:cursor-pointer`}
+        cx="10"
+        cy="10"
+        r={`${radius}`}
         stroke="black"
-        stroke-width="0.5"
+        stroke-width="0.2"
         fill="#ebdada"
       />
     </svg>
