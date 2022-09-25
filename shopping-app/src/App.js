@@ -4,20 +4,22 @@ import { images } from "./utlity";
 import { NotifySlider } from "./homescreen/NotifySlider";
 import { ImageSlider } from "./homescreen/ImageSlider";
 import { ReviewButton } from "./homescreen/ReviewButton";
+import {ThemesContent} from "./homescreen/Themes"
 
 function App() {
   return (
-    <div>
+    <>
       <div className="imageSlider">
         <NotifySlider />
         <ImageSlider />
         {/* <Navbar /> */}
-        <ReviewButton />
+        
       </div>
-      <div>
         <BrandDetails />
-      </div>
-    </div>
+        <ThemesContent />
+
+      <ReviewButton />
+    </>
   );
 }
 
