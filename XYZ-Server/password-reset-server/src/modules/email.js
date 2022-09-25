@@ -19,8 +19,8 @@ export async function sendEmilToVerify(email, newOtp) {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "addsocialproof.xyz@gmail.com", // generated ethereal user
-      pass: "knbgsjieiowvhusa", // generated ethereal password
+      user: process.env.EMAIL_USERNAME, // generated ethereal user
+      pass: process.env.EMAIL_PASS, // generated ethereal password
     },
   });
   // rmdm@ruggedmonitoring.com
