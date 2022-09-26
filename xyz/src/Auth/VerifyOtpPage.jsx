@@ -33,8 +33,11 @@ export function VerifyOtpPage() {
                 }
                 if (data.status === "success") {
                     //store the given token id
-                    console.log(data.token);
-                    navigate("/onboarding-details");
+                    const newUser = window.localStorage.getItem("newUser");
+                    window.localStorage.setItem('id',data.id)
+                    console.log(newUser);
+                    newUser ==='true'?navigate("/onboarding-details"):navigate("/home");
+                    window.localStorage.removeItem('newUser');
                 }
 
             });

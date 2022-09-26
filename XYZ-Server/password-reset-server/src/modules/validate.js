@@ -1,4 +1,4 @@
-import { client } from "../index.js";
+// import { client } from "../index.js";
 import {allOtps} from "../DB/otps.js"
 
 
@@ -16,10 +16,10 @@ export function isEmailValid(email){
         return false;
 }
 
-export async function isUserAlreadyExists(email){
-    const result = await client.db('node-task5').collection("user-privacy").findOne({email:email})
-    return result;
-}
+// export async function isUserAlreadyExists(email){
+//     const result = await client.db('node-task5').collection("user-privacy").findOne({email:email})
+//     return result;
+// }
 
 export async function checkIfOtp(email,newOtp){
     for(let i = 0;i<allOtps.length;i++){

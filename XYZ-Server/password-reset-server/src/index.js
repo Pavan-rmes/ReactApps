@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv"
 import cors from "cors"
 import {signupRouter} from "./routes/signup.js"
+import {db} from "./Controller/dbInitialize.js"
 
 dotenv.config()
 
@@ -23,6 +24,6 @@ async function DbConnection(){
     return client;
 }
 
-export const client = await DbConnection();
+// export const client = await DbConnection();
 
 app.listen(PORT,()=>console.log(`App is listening on ${PORT}`))

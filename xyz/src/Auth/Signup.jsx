@@ -43,8 +43,9 @@ export function Signup() {
         axios.post(`${Api}/signup`,{email:email})
         .then((response)=>(response.data))
         .then((data)=>{
+            window.localStorage.setItem('emailForSignIn', email);
+            window.localStorage.setItem('newUser',data.newUser);
             data.status =="success" && navigate("/signup/verify");
-            window.localStorage.setItem('emailForSignIn', email)
         })
         .catch((error)=>console.log(error))
     }
