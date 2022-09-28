@@ -6,6 +6,9 @@ import jwt from "jsonwebtoken"
 import {generateNewOtp} from "../modules/generateOtp.js"
 import { insertUser,isUserExists } from "../Controller/login.js";
 import { v4 as uuidv4 } from 'uuid';
+import dotenv from "dotenv"
+
+dotenv.config()
 
 export const signupRouter  = express.Router()
 
