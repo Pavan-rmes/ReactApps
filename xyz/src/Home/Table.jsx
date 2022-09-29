@@ -17,7 +17,9 @@ const people = [
   // More people...
 ];
 
-export function TableContent() {
+export function TableContent({testimonials}) {
+  const testimonialsData = testimonials[1].testimonials;
+  console.log(testimonialsData)
   let navigate = useNavigate();
   return (
     <div className="px-4 sm:px-6 lg:px-8 ">
@@ -79,36 +81,36 @@ export function TableContent() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white ">
-            {people.map((person) => (
-              <tr key={person.Pending}>
+            {testimonialsData.map((testimonial,id) => (
+              <tr key={id}>
                 <td className="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-500 sm:w-auto sm:max-w-none sm:pl-6">
-                  <span className='cursor-pointer hover:text-gray-900'>{person.CampaignName}</span>
+                  <span className='cursor-pointer hover:text-gray-900'>{testimonial.testimonial}</span>
                   <dl className="font-normal lg:hidden">
                     {/* <dt className="sr-only">Title</dt> */}
                     <dd className="mt-1 truncate text-gray-700">
                       {" "}
-                      Accepted :{person.Accepted}
+                      Accepted :{testimonial?.accepted}
                     </dd>
                     {/* <dt className="sr-only sm:hidden">Email</dt> */}
                     <dd className="mt-1 truncate text-gray-700 sm:hidden">
-                      Pending: {person.Pending}
+                      Pending: {testimonial?.pending}
                     </dd>
                     <dd className="mt-1 truncate text-gray-700 sm:hidden">
-                      Views: {person.Views}
+                      Views: {testimonial?.views}
                     </dd>
                   </dl>
                 </td>
                 <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                  {person.Accepted}
+                  {testimonial?.accepted}
                 </td>
                 <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                  {person.Pending}
+                  {testimonial?.pending}
                 </td>
                 <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                  {person.Views}
+                  {testimonial?.views}
                 </td>
                 <td className="px-3 py-4 text-sm text-gray-500 w-36">
-                    <ToggleButton />
+                    <ToggleButton toggleStatus={testimonial?.status} />
                 </td>
                 <td className="py-4 pl-3 pr-4 flex flex-row  justify-center text-right text-sm font-medium text-eeorange-500 hover:text-eeorange-700">
                   <a href="#">View</a>
@@ -131,8 +133,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function ToggleButton() {
-  const [enabled, setEnabled] = useState(false)
+export function ToggleButton({toggleStatus}) {
+  const [enabled, setEnabled] = useState(+{toggleStatus})
   const [open, setOpen] = useState(false)
 
   function changeToggle(){

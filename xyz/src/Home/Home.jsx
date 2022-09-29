@@ -1,50 +1,22 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3BottomLeftIcon,
-  BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
+  BellIcon
 } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { TableContent } from "./Table";
+import { classNames } from "../Navbar/SideNavbar";
 
 
-export const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
 
-export function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
-export function HomeScreen({ setSidebarOpen }) {
+
+export function HomeScreen({ setSidebarOpen,testimonials }) {
   return (
     <div className="flex flex-1 flex-col">
       <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
@@ -115,7 +87,7 @@ export function HomeScreen({ setSidebarOpen }) {
         <div className="py-6">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
             {/* Replace with your content */}
-            <TableContent />
+            <TableContent testimonials={testimonials} />
             {/* /End replace */}
           </div>
         </div>

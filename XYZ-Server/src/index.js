@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv"
 import cors from "cors"
 import {signupRouter} from "./routes/signup.js"
+import { TestimonialRoute } from "./routes/testimonial.js";
 import {db} from "./Controller/dbInitialize.js"
 
 dotenv.config()
@@ -13,6 +14,7 @@ app.use(cors({ origin: true, credentials: true }))
 
 app.use(express.json())
 app.use("/signup",signupRouter)
+app.use("/testimonial",TestimonialRoute)
 
 const PORT = process.env.PORT || 9000
 const MONGO_DB = process.env.MONGO_DB

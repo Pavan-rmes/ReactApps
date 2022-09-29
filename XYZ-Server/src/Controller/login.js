@@ -13,12 +13,14 @@ export async function insertUser(email){
 }
 
 export async function isUserExists(email){
+    let userId;
     const docRef  = db.collection('login')
     const resp = await docRef.where("email",'==',email).get();
     if(resp.empty){
         return false;
     }
     resp.forEach((doc)=>{
-        return(doc.id);
+        userId =doc.id;
     })
+    return userId;
 }

@@ -29,13 +29,13 @@ signupRouter.post ("/",async (req,res)=>{
     //check if otp and update it
     checkIfOtp(email,newGeneratedOtp);
     sendEmilToVerify(email,newGeneratedOtp);
+    const userId = await isUserExists(email);
     if(!(await isUserExists(email))){
-        insertUser(email);
-        res.send({status:"success",newUser:true});
+        res.send({status:"new user"});
         return;
     }
 
-    res.send({status:"success",newUser:false})
+    res.send({status:"success",id:userId})
 })
 
 
@@ -44,17 +44,10 @@ signupRouter.post("/verifyotp",async(req,res)=>{
     const {email,otp} = req.body;
     console.log(email,otp)
     const state = await verifytheOtp(email,+otp);
-
-    let  userId = await isUserExists(email);
-
-    if(!userId){
-        res.send({status:"log out"});
-        return;
-    }
-
+    console.log(state)
     if(state.status === "success"){
         const token = jwt.sign({data:"foo"},process.env.SECRET_KEY,{expiresIn:"300s"})
-        res.send({status:"success",id:userId,token:token})
+        res.send({status:"success",id:uuidv4(),token:token})
         return;
     }
     res.send(state)

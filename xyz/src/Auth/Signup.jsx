@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import {Api} from "../Apis/api"
@@ -22,21 +22,10 @@ export function Signup() {
     const navigate = useNavigate();
     const [email, setemail] = useState('');
 
-    // function handleSignup() {
-    //     sendSignInLinkToEmail(auth,email,actionCodeSettings)
-    //     .then(() => {
-    //         // The link was successfully sent. Inform the user.
-    //         // Save the email locally so you don't need to ask the user for it again
-    //         // if they open the link on the same device.
-    //         window.localStorage.setItem('emailForSignIn', email);
-    //         // ...
-    //       })
-    //       .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         // ...
-    //       });
-    // }
+    useEffect(()=>{
+        const id = window.localStorage.getItem("id")
+        id && navigate("/home")
+      },[])
 
     function handleSignup(e){
         // e.preventDefault();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Api } from "../Apis/api";
@@ -10,6 +10,11 @@ export function VerifyOtpPage() {
     const [otp, setOtp] = useState('');
     const [err,setError] = useState(0)
 
+
+    useEffect(()=>{
+        const id = window.localStorage.getItem("id")
+        id && navigate("/home")
+      },[])
 
     function handleOtp(e) {
         const email = window.localStorage.getItem("emailForSignIn");
@@ -33,9 +38,9 @@ export function VerifyOtpPage() {
                 }
                 if (data.status === "success") {
                     //store the given token id
+                    console.log(data)
                     const newUser = window.localStorage.getItem("newUser");
                     window.localStorage.setItem('id',data.id)
-                    console.log(newUser);
                     newUser ==='true'?navigate("/onboarding-details"):navigate("/home");
                     window.localStorage.removeItem('newUser');
                 }

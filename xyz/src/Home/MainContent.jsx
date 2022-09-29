@@ -2,28 +2,45 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { SideNavbar } from "../Navbar/SideNavbar";
-import { navigation, classNames, HomeScreen } from "./Home";
+import { HomeScreen } from "./Home";
+import {navigation, classNames} from "../Navbar/SideNavbar"
 import { Routes, Route } from "react-router-dom";
 import { Bars3BottomLeftIcon } from "@heroicons/react/24/outline";
 import { Studio } from "../Studio/studio";
+import { AuthRoute } from "../Auth/AuthRoute"; 
+import { FirstTestimonialForm } from "../Form/FirstTestimonial";
+import { useEffect } from "react";
+import axios from "axios";
+import { Api } from "../Apis/api";
 
 export default function AppScreen() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [navData,setNavData]= useState(navigation);
 
+  useEffect(()=>{
+    let id = window.localStorage.getItem("id");
+    axios.get(`${Api}/testimonial/all?userId=${id}`)
+    .then((res)=>res.data)
+    .then((res)=>{
+      let navdata = [...navData];
+      navdata[1].testimonials = res;
+      setNavData(navdata);
+    })
+  },[])
+  
   return (
     <>
+      
       <div>
         <Transitionroot
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
         />
         {/* Static sidebar for desktop */}
-        <SideNavbar />
+        <SideNavbar navData={navData} />
         <div className="md:pl-64">
-        <Routes>
-          <Route path="/home" element={<HomeScreen />} />
-          <Route path="/studio" element={<Studio />} />
-        </Routes>
+          <AuthRoute path="/home" element = {<HomeScreen testimonials={navData} />} />
+          <AuthRoute path="/studio" element={<Studio />} />
         </div>
       </div>
     </>

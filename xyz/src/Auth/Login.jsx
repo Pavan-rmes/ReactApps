@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {GoogleSvg} from "../icons/index"
 import axios from 'axios';
 import {Api} from "../Apis/api"
@@ -19,11 +19,15 @@ export function LoginPage(){
 
 
 
-
 export  function Login() {
   const [email, setemail] = useState('');
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      const id = window.localStorage.getItem("id")
+      id && navigate("/home")
+    },[])
 
     function handleSignup(e){
       console.log(email)
