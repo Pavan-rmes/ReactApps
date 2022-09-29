@@ -17,3 +17,5 @@ export const actionCodeSettings = {
     handleCodeInApp: true,
     // dynamicLinkDomain: 'http://localhost:3000'
   };
+
+export const companyImg = "https://tailwindui.com/img/logos/mark.svg?color=orange&shade=600"
